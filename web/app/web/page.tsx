@@ -11,6 +11,7 @@ import Image from "next/image";
 import { create } from "zustand";
 import { Button } from "@/components/ui/button";
 import clsx from "clsx";
+import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
 
 const useStore = create<{
     selectedSidebarTab: number
@@ -26,7 +27,7 @@ const Page = () => {
         <div className="w-full h-screen flex py-1 pe-1.5">
             <div className="w-full h-full flex rounded-lg">
                 <div className="w-23 h-full flex flex-col justify-between items-center bg-background px-1.5 py-4.5">
-                    <Image src={"/assets/images/logo-cropped.webp"} width={48} height={48} alt="Logo"/>
+                    <Image src={"/assets/images/logo-cropped.webp"} width={48} height={48} alt="Logo" />
                     <div className="flex flex-col gap-1.5 w-fit p-1.5 rounded-full">
                         {
                             (MenuList as ML[]).map((item: ML, id: number) => (
@@ -35,7 +36,7 @@ const Page = () => {
                                     className={clsx('border-input relative flex flex-col items-center gap-3 rounded-full p-2! text-center shadow-xs transition-[color,box-shadow] outline-none has-data-disabled:cursor-not-allowed has-data-disabled:opacity-50',
                                         store.selectedSidebarTab !== id && 'bg-inherit/85 hover:bg-gray-700/20 text-white/75',
                                         store.selectedSidebarTab === id && 'border-2 bg-gray-800 text-white/75 hover:bg-gray-800/50 hover:border-gray-100/50',
-                                        
+
                                     )}
                                     onClick={(ev) => {
                                         store.setSidebarTab(id);
@@ -55,12 +56,26 @@ const Page = () => {
                     </div>
                     <div className="flex flex-col gap-4 w-full items-center">
                         <button className="overflow-hidden w-fit h-fit rounded-full">
-                            <Image className="bg-purple-200" width={48} height={48} loading="lazy"/>
+                            <Image className="bg-purple-200" width={48} height={48} loading="lazy" />
                         </button>
                     </div>
                 </div>
-                <div className="w-full h-full bg-zinc-100 dark:bg-zinc-900 flex flex-row rounded-2xl">
+                <div className="w-full h-full bg-zinc-100 dark:bg-secondary-background flex flex-row rounded-2xl">
+                    <ResizablePanelGroup direction="horizontal" className="w-full h-full overflow-hidden rounded-2xl">
+                        <ResizablePanel defaultSize={20}>
+                            <div className="w-full h-full flex flex-col divide-y-2 bg-tertiary-background divide-zinc-300 dark:divide-zinc-700">
+                                <div className="flex flex-row items-center justify-between px-5 py-4.5 h-21">
+                                    <h1 className="text-2xl font-(primary) font-bold">
+                                        Payamvar
+                                    </h1>
+                                </div>
+                            </div>
+                        </ResizablePanel>
+                        <ResizableHandle color="var(--border-color)"/>
+                        <ResizablePanel defaultSize={80}>
 
+                        </ResizablePanel>
+                    </ResizablePanelGroup>
                 </div>
             </div>
         </div>

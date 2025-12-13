@@ -15,6 +15,8 @@
   --color-item-background: var(--item-background);
   --color-colored-primary: var(--colored-primary);
   --color-colored-secondary: var(--colored-secondary);
+  --color-incoming-bubble-bg: var(--incoming-bubble-background);
+  --color-outgoing-bubble-bg: var(--outgoing-bubble-background);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -97,6 +99,9 @@
   --secondary-background: #14161A;
   --tertiary-background: #181A1E;
   --item-background: #1C1E23;
+  --chat-background: #14161A;
+  --incoming-bubble-background: #16181C;
+  --outgoing-bubble-background: #1F2126;
   --main-surface-color: #1A1C20;
   --border-color: #2A2D33;
   --primary-color: #E6E7EB;

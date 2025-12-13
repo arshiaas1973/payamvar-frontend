@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import clsx from "clsx";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
 import { AvatarFallback, AvatarImage, Avatar } from "@/components/ui/avatar";
+import { ChatSection } from "@/components/web/ChatSection";
 
 const useStore = create<{
     selectedSidebarTab: number,
@@ -129,7 +130,11 @@ const Page = () => {
                         </ResizablePanel>
                         <ResizableHandle color="var(--border-color)" />
                         <ResizablePanel defaultSize={80}>
-                            
+                            {
+                                {
+                                    0: <ChatSection chat_id={store.activeChat}/>
+                                }[store.selectedSidebarTab]
+                            }
                         </ResizablePanel>
                     </ResizablePanelGroup>
                 </div>

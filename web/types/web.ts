@@ -7,3 +7,6 @@ export type MenuItem = {
     disabled?: boolean;
     label?: string;
 };
+export type Chat = {
+    sender: "incoming" | "outgoing";
+};

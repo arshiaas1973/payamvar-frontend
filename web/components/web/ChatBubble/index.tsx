@@ -26,9 +26,9 @@ export function ChatBubble({ chat }: { chat: Chat }) {
                     chat.sender === "outgoing" && "text-end",
                 )}>User</h1>
                 <div className={clsx(
-                    "py-2 px-4 rounded-[20px] bg-incoming-bubble-bg w-fit",
-                    chat.sender === "incoming" && "rounded-ss-none",
-                    chat.sender === "outgoing" && "rounded-se-none",
+                    "py-2 px-4 rounded-[20px] w-fit",
+                    chat.sender === "incoming" && "rounded-ss-none bg-incoming-bubble-bg",
+                    chat.sender === "outgoing" && "rounded-se-none bg-outgoing-bubble-bg/50",
                 )}>
                     jdakjdlsjdsl<br />ds
                 </div>

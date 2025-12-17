@@ -100,8 +100,6 @@
   --tertiary-background: #181A1E;
   --item-background: #1C1E23;
   --chat-background: #14161A;
-  --incoming-bubble-background: #16181C;
-  --outgoing-bubble-background: #1F2126;
   --main-surface-color: #1A1C20;
   --border-color: #2A2D33;
   --primary-color: #E6E7EB;
@@ -109,6 +107,8 @@
   --tertiary-color: #7C808A;
   --colored-primary: #8E83D4;
   --colored-secondary: #5A93D8;
+  --incoming-bubble-background: #1F2126;
+  --outgoing-bubble-background: var(--colored-secondary);
   --background: var(--main-background);
   --foreground: var(--primary-color);
   --card: oklch(0.205 0 0);

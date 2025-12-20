@@ -1,24 +1,38 @@
 "use client";
-// LazyIcon.tsx
-import { Icon, IconifyIcon, IconProps, loadIcons } from "@iconify/react";
+
+import { Icon, IconProps } from "@iconify/react";
 import { useEffect, useState } from "react";
 import { Spinner } from "../spinner";
 import clsx from "clsx";
 
-export default function LazyIcon({ name, className, ...props }:
-  Omit<IconProps, "className" | "icon" | "name"> & { className?: string, icon?: string, name: string }) {
-  const [ready, setReady] = useState(false);
+type LazyIconProps = Omit<IconProps, "icon"> & {
+  name: string;
+  className?: string;
+};
 
-  useEffect(() => {
-    loadIcons([name], () => setReady(true));
-  }, [name]);
+export default function LazyIcon({
+  name,
+  className,
+  ...props
+}: LazyIconProps) {
+  const [loaded, setLoaded] = useState(false);
+  
+  return (
+    <>
+      {!loaded && (
+        <Spinner
+          className={clsx(className, "w-5 h-5")}
+        />
+      )}
 
-  if (!ready) {
-    return <Spinner className={clsx(
-      className,
-      "w-5 h-5",
-    )} />; // placeholder
-  }
-
-  return <Icon className={className} {...props} icon={name} />;
+      <Icon
+        icon={name}
+        className={clsx(className, !loaded && "hidden")}
+        onLoad={() => {
+          setLoaded(true)
+        }}
+        {...props}
+      />
+    </>
+  );
 }

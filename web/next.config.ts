@@ -7,6 +7,11 @@ const nextConfig: NextConfig = {
     apiKey: process.env.NEXT_API_KEY,
   },
   transpilePackages: ['mui-tel-input'],
+  images: {
+    remotePatterns: [
+      new URL('https://picsum.photos/**'),
+    ],
+  },
   // experimental:{
   //   optimizePackageImports: ["@chakra-ui/react"],
   // },

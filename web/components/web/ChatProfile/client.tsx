@@ -3,6 +3,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import LazyIcon from "@/components/ui/custom/lazyicon";
+import { ToggleGroupItemWithTooltip, Tooltip } from "@/components/ui/custom/toggle-tooltip";
 import { DialogClose, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
@@ -59,22 +60,38 @@ export default function ChatProfileClient() {
                         <ScrollBar orientation="vertical" />
                     </ScrollArea>
                     <div className="flex flex-col gap-1 shrink-0 w-fit">
-                        <ToggleGroup type="multiple" variant="outline" orientation="vertical" spacing={2} size="sm">
-                            <ToggleGroupItem
-                                value="star"
-                                aria-label="Toggle star"
-                                className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-yellow-500 data-[state=on]:*:[svg]:stroke-yellow-500"
+                        <ToggleGroup className="flex flex-col " type="multiple" variant="outline" orientation="vertical" spacing={2} size="sm">
+                            
+                            <ToggleGroupItemWithTooltip
+                                value="video"
+                                aria-label="Toggle videos"
+                                className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-sky-500! data-[state=on]:*:[svg]:*:[path]:fill-blue-500! p-2! w-fit h-fit relative"
                             >
                                 <LazyIcon name="streamline-plump:recording-tape-1-remix" className="size-5" />
-                            </ToggleGroupItem>
-                            <ToggleGroupItem
-                                value="heart"
-                                aria-label="Toggle heart"
-                                className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-red-500 data-[state=on]:*:[svg]:stroke-red-500"
+                                <Tooltip className="bg-(--chat-background)">
+                                    Show videos
+                                </Tooltip>
+                            </ToggleGroupItemWithTooltip>
+                            <ToggleGroupItemWithTooltip
+                                value="picture"
+                                aria-label="Toggle pictures"
+                                className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-emerald-500! data-[state=on]:*:[svg]:*:stroke-emerald-500! data-[state=on]:*:[svg]:*:[circle]:fill-emerald-500! p-2! w-fit h-fit"
                             >
-                                <HeartIcon />
-                                Heart
-                            </ToggleGroupItem>
+                                <LazyIcon name="line-md:image" className="size-5" />
+                                <Tooltip className="bg-(--chat-background)">
+                                    Show pictures
+                                </Tooltip>
+                            </ToggleGroupItemWithTooltip>
+                            <ToggleGroupItemWithTooltip
+                                value="gif"
+                                aria-label="Toggle GIFs"
+                                className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-rose-500! data-[state=on]:*:[svg]:*:stroke-rose-500! p-2! w-fit h-fit"
+                            >
+                                <LazyIcon name="tabler:gif" className="size-5" />
+                                <Tooltip className="bg-(--chat-background)">
+                                    Show GIFs
+                                </Tooltip>
+                            </ToggleGroupItemWithTooltip>
                         </ToggleGroup>
                     </div>
                 </div>

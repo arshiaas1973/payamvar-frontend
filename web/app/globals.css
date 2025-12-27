@@ -7,9 +7,11 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --color-green: #4CCF88;
-  --color-yellow: #E7D272;
-  --color-red: #E46F6F;
+  /* Functional */
+  --color-success: #4CCF88;
+  --color-warning: #E7D272;
+  --color-error: #E46F6F;
+
   --color-main-background: var(--main-background);
   --color-secondary-background: var(--secondary-background);
   --color-tertiary-background: var(--tertiary-background);
@@ -61,7 +63,7 @@
 }
 
 :root {
-  
+
   --radius: 0.625rem;
   --background: #ffffff;
   --foreground: #171717;
@@ -111,6 +113,7 @@
   --colored-secondary: #5A93D8;
   --incoming-bubble-background: #1F2126;
   --outgoing-bubble-background: var(--colored-secondary);
+  --label-bg: #1C2230;
   --background: var(--main-background);
   --foreground: var(--primary-color);
   --card: oklch(0.205 0 0);
@@ -148,6 +151,7 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }

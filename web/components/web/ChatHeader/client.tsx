@@ -36,7 +36,7 @@ export function ChatHeaderClient() {
                         </div>
                     </div>
                 </DialogTrigger>
-                <DialogContent showCloseButton={false} className="h-fit! min-w-lg! w-fit! max-w-none! bg-(--main-surface-color)!">
+                <DialogContent showCloseButton={false} className="h-fit! min-w-lg! p-0! w-fit! max-w-2xl! bg-(--main-surface-color)!">
                     <ChatProfile />
                 </DialogContent>
             </Dialog>

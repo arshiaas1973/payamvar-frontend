@@ -36,20 +36,25 @@ export default function ChatProfileClient() {
                 </div>
                 {/* <Separator className="w-[calc(100%-120px)]! mx-auto h-[1.5px]! bg-linear-to-r from-transparent from-10% to-90% via-white/20 via-50% to-transparent" /> */}
                 <div className="flex flex-col w-full rounded-xl">
-                    <div className="flex flex-row w-full">
-                        <DisplayInput className="w-1/2! ">
-                            <DisplayInputLabel label="Chat Background Select a background for this chatSelect a background for this chatSelect a background for this chat" />
-                            <DisplayInputContent className="px-4 py-2 text-sm font-normal text-white/75 rouneded-none first:rounded-s-xl last:rounded-e-xl">
-                                Select a background for this chat
-                            </DisplayInputContent>
-                        </DisplayInput> 
-                        <DisplayInput className="w-1/2!">
-                            <DisplayInputLabel label="Chat Background Select a background for this chatSelect a background for this chatSelect a background for this chat" />
-                            <DisplayInputContent className="px-4 py-2 text-sm font-normal text-white/75">
-                                Select a background for this chat
-                            </DisplayInputContent>
-                        </DisplayInput> 
-                    </div>
+                    {
+                        [0, 1].map(() => (
+                            <div className="flex flex-row w-full group">
+                                <DisplayInput className="w-1/2! rounded-none! first:border-e-0! last:border-s-0! first:rounded-s-xl! last:rounded-e-xl! group-first:first:rounded-es-none! group-first:last:rounded-ee-none! group-first:first:rounded-ss-xl! group-first:last:rounded-se-xl! group-last:first:rounded-ss-none! group-last:last:rounded-se-none! group-last:first:rounded-es-xl! group-last:last:rounded-ee-xl!">
+                                    <DisplayInputLabel label="Chat Background Select a background for this chatSelect a background for this chatSelect a background for this chat" />
+                                    <DisplayInputContent className="px-4 py-2 text-sm font-normal text-white/75 ">
+                                        Select a background for this chat
+                                    </DisplayInputContent>
+                                </DisplayInput>
+                                <DisplayInput className="w-1/2! rounded-none! first:rounded-s-xl! last:rounded-e-xl! group-first:first:rounded-es-none! group-first:last:rounded-ee-none! group-first:first:rounded-ss-xl! group-first:last:rounded-se-xl! group-last:first:rounded-ss-none! group-last:last:rounded-se-none! group-last:first:rounded-es-xl! group-last:last:rounded-ee-xl!">
+                                    <DisplayInputLabel label="Chat Background Select a background for this chatSelect a background for this chatSelect a background for this chat" />
+                                    <DisplayInputContent className="px-4 py-2 text-sm font-normal text-white/75">
+                                        Select a background for this chat
+                                    </DisplayInputContent>
+                                </DisplayInput>
+                            </div>
+                        ))
+                    }
+
                 </div>
                 <div className="flex flex-row min-w-full w-fit gap-4">
                     <ScrollArea className="h-82 grow flex-1 w-fit border rounded-2xl bg-colored-secondary/15 p-2 overflow-hidden">

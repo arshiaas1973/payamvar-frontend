@@ -2,7 +2,7 @@
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { DisplayInput, DisplayInputContent, DisplayInputLabel, InputLabel } from "@/components/ui/custom/input-label";
+import { DisplayInput, DisplayInputContent, DisplayInputLabel, InputLabel } from "@/components/ui/custom/input-label/client";
 import LazyIcon from "@/components/ui/custom/lazyicon";
 import { ToggleGroupItemWithTooltip, Tooltip } from "@/components/ui/custom/toggle-tooltip";
 import { DialogClose, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -37,50 +37,82 @@ export default function ChatProfileClient() {
                 {/* <Separator className="w-[calc(100%-120px)]! mx-auto h-[1.5px]! bg-linear-to-r from-transparent from-10% to-90% via-white/20 via-50% to-transparent" /> */}
                 <div className="flex flex-col w-full rounded-xl">
                     {
-                        [0, 1].map(() => (
-                            <div className="flex flex-row w-full group">
-                                <DisplayInput className="w-1/2! rounded-none! first:border-e-0! last:border-s-0! first:rounded-s-xl! last:rounded-e-xl! group-first:first:rounded-es-none! group-first:last:rounded-ee-none! group-first:first:rounded-ss-xl! group-first:last:rounded-se-xl! group-last:first:rounded-ss-none! group-last:last:rounded-se-none! group-last:first:rounded-es-xl! group-last:last:rounded-ee-xl!">
-                                    <DisplayInputLabel label="Chat Background Select a background for this chatSelect a background for this chatSelect a background for this chat" />
-                                    <DisplayInputContent className="px-4 py-2 text-sm font-normal text-white/75 ">
-                                        Select a background for this chat
-                                    </DisplayInputContent>
-                                </DisplayInput>
-                                <DisplayInput className="w-1/2! rounded-none! first:rounded-s-xl! last:rounded-e-xl! group-first:first:rounded-es-none! group-first:last:rounded-ee-none! group-first:first:rounded-ss-xl! group-first:last:rounded-se-xl! group-last:first:rounded-ss-none! group-last:last:rounded-se-none! group-last:first:rounded-es-xl! group-last:last:rounded-ee-xl!">
-                                    <DisplayInputLabel label="Chat Background Select a background for this chatSelect a background for this chatSelect a background for this chat" />
-                                    <DisplayInputContent className="px-4 py-2 text-sm font-normal text-white/75">
-                                        Select a background for this chat
-                                    </DisplayInputContent>
-                                </DisplayInput>
-                            </div>
-                        ))
+                        [
+                            [
+                                {
+                                    label: "Username",
+                                    value: "@test",
+                                    mode: "heading",
+                                    type: "link",
+                                },
+                                {
+                                    label: "Birthday",
+                                    value: "2023/01/01",
+                                    mode: "heading",
+                                    type: "normal",
+                                    options: {
+                                        url: "#",
+                                    },
+                                }
+                            ]
+                            , [
+                                {
+                                    label: "Bio",
+                                    value: "dajkldajsl",
+                                    mode: "paragraph",
+                                    type: "normal",
+                                }
+                            ]].map((group, gi) => (
+                                <div className="flex flex-row w-full group" key={gi}>
+                                    {
+                                        group.map((item, ii, itemarray) => (
+                                            <DisplayInput className={clsx(
+                                                "rounded-none! first:rounded-s-xl! last:rounded-e-xl! group-first:first:rounded-es-none! group-first:last:rounded-ee-none! group-first:first:rounded-ss-xl! group-first:last:rounded-se-xl! group-last:first:rounded-ss-none! group-last:last:rounded-se-none! group-last:first:rounded-es-xl! group-last:last:rounded-ee-xl!",
+                                                true && `w-1/${itemarray.length}!`
+                                            )}
+                                            >
+                                                <DisplayInputLabel label={item.label} />
+                                                <DisplayInputContent className="px-4 py-2 text-sm font-normal text-white/75" mode={item.mode} type={item.type} options={item.options}>
+                                                    {item.value}
+                                                </DisplayInputContent>
+                                            </DisplayInput>
+                                        ))
+                                    }
+                                </div>
+                            ))
                     }
 
                 </div>
                 <div className="flex flex-row min-w-full w-fit gap-4">
-                    <ScrollArea className="h-82 grow flex-1 w-fit border rounded-2xl bg-colored-secondary/15 p-2 overflow-hidden">
-                        <div className="grow flex-1 min-w-fit w-full grid grid-cols-3 gap-2 rounded-2xl">
-                            {
-                                [0, 1, 2, 3, 4, 5].map((_, index, array) => (
-                                    <div className={
-                                        clsx(
-                                            "flex aspect-square min-w-40 relative overflow-hidden bg-transparent col-span-1 row-span-1",
-                                            index == 0 && "rounded-none rounded-tl-xl",
-                                            index == 2 && "rounded-none rounded-tr-xl",
-                                            index == array.length - 1 && "rounded-none rounded-br-xl",
-                                            index == array.length - 3 && "rounded-none rounded-bl-xl",
-                                        )}>
-                                        <Image
-                                            src={"https://picsum.photos/seed/picsum/400/400"}
-                                            alt="Chat Background"
-                                            fill
-                                            className="object-cover"
-                                        />
-                                    </div>
-                                ))
-                            }
+                    <div className="grow flex-1 flex flex-col gap-2">
+                        <div className="flex flex-row font-secondary font-bold text-lg text-white bg-colored-secondary/15 w-fit py-1 px-4 rounded-full border">
+                            Media
                         </div>
-                        <ScrollBar orientation="vertical" />
-                    </ScrollArea>
+                        <ScrollArea className="h-82 grow w-fit border rounded-2xl bg-colored-secondary/15 p-2 overflow-hidden">
+                            <div className="grow flex-1 min-w-fit w-full grid grid-cols-3 gap-2 rounded-2xl">
+                                {
+                                    [0, 1, 2, 3, 4, 5].map((_, index, array) => (
+                                        <div className={
+                                            clsx(
+                                                "flex aspect-square min-w-40 relative overflow-hidden bg-transparent col-span-1 row-span-1",
+                                                index == 0 && "rounded-none rounded-tl-xl",
+                                                index == 2 && "rounded-none rounded-tr-xl",
+                                                index == array.length - 1 && "rounded-none rounded-br-xl",
+                                                index == array.length - 3 && "rounded-none rounded-bl-xl",
+                                            )}>
+                                            <Image
+                                                src={"https://picsum.photos/seed/picsum/400/400"}
+                                                alt="Chat Background"
+                                                fill
+                                                className="object-cover"
+                                            />
+                                        </div>
+                                    ))
+                                }
+                            </div>
+                            <ScrollBar orientation="vertical" />
+                        </ScrollArea>
+                    </div>
                     <div className="flex flex-col gap-1 shrink-0 w-fit">
                         <ToggleGroup className="flex flex-col " type="multiple" variant="outline" orientation="vertical" spacing={2} size="sm">
 

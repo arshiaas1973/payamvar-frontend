@@ -9,10 +9,14 @@ import LazyIcon from "@/components/ui/custom/lazyicon";
 
 const useStore = create<{
     isProfileShown: boolean,
-    toogleProfileVisibility: () => void,
+    isProfileMenuOpened: boolean,
+    toggleProfileVisibility: () => void,
+    toggleProfileMenuOpened: () => void,
 }>((set) => ({
     isProfileShown: false,
-    toogleProfileVisibility: () => set((state) => ({ isProfileShown: !state.isProfileShown })),
+    isProfileMenuOpened: false,
+    toggleProfileVisibility: () => set((state) => ({ isProfileShown: !state.isProfileShown })),
+    toggleProfileMenuOpened: () => set((state) => ({ isProfileMenuOpened: !state.isProfileMenuOpened })),
 }));
 
 export function ChatHeaderClient() {
@@ -22,7 +26,7 @@ export function ChatHeaderClient() {
             <Dialog>
                 <DialogTrigger asChild>
                     <div className="flex flex-row items-center gap-3 select-none cursor-pointer" onClick={() => {
-                        store.toogleProfileVisibility();
+                        store.toggleProfileVisibility();
                     }}>
                         <Avatar className="w-10 h-10">
                             <AvatarImage width={40} height={40} />
@@ -43,15 +47,31 @@ export function ChatHeaderClient() {
                 </DialogContent>
             </Dialog>
             <div className="flex flex-row items-center gap-2">
-                <div className="flex flex-row-reverse items-center h-full relative cursor-pointer bg-colored-secondary/45 text-white rounded-full p-1 gap-1.5">
-                    <Button className="rounded-full outline-none! border-0! bg-secondary-background/50! peer" variant="outline">
-                        <LazyIcon name="line-md:list" className="size-full aspect-square" />
+                <div className="flex flex-row-reverse items-center h-full relative cursor-pointer bg-tertiary-background text-white rounded-full p-1 gap-1.5" /* bg-colored-secondary/45 */
+                    onClick={() => {
+                        store.toggleProfileMenuOpened();
+                    }}
+                >
+                    <Button className="rounded-sm outline-none! bg-tertiary-background! border-0! peer" variant="outline">
+                    {
+                        store.isProfileMenuOpened ? (
+                            <LazyIcon name="line-md:menu" className="size-full aspect-square" />
+                        ) : (
+                            <LazyIcon name="mdi:dots-vertical" className="size-full aspect-square" />
+                        )
+                    }   
                     </Button>
-                    <div className="w-0 origin-right scale-x-0 h-full rounded-full bg-colored-secondary/60 flex flex-row peer-hover:w-20! peer-hover:scale-x-100! transition-all duration-300 ease-linear">
-                        <Button className="rounded-full outline-none! border-0! bg-secondary-background/90!" variant="outline">
+                    {/* <div className="w-0! origin-right h-full rounded-full bg-colored-secondary/60 flex flex-row peer-hover:w-fit! transition-all duration-300 ease-linear">
+                        <Button className="rounded-full outline-none! border-0! bg-secondary-background/90! w-fit!" variant="outline">
                             <LazyIcon name="line-md:list" className="size-full aspect-square" />
                         </Button>
-                    </div>
+                        <Button className="rounded-full outline-none! border-0! bg-secondary-background/90! w-fit!" variant="outline">
+                            <LazyIcon name="line-md:list" className="size-full aspect-square" />
+                        </Button>
+                        <Button className="rounded-full outline-none! border-0! bg-secondary-background/90! w-fit!" variant="outline">
+                            <LazyIcon name="line-md:list" className="size-full aspect-square" />
+                        </Button>
+                    </div> */}
                 </div>
             </div>
         </div>

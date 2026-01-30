@@ -39,15 +39,14 @@ const Page = () => {
             <div className="w-full h-full flex rounded-lg">
                 <div className="w-23 h-full flex flex-col justify-between items-center bg-background px-1.5 py-4.5">
                     <Image src={"/assets/images/logo-cropped.webp"} width={48} height={48} alt="Logo" />
-                    <div className="flex flex-col gap-1.5 w-fit p-1.5 rounded-full">
+                    <div className="flex flex-col gap-1.5 w-fit p-1.5 rounded-full items-center">
                         {
                             (MenuList as ML[]).map((item: ML, id: number) => (
                                 <Button
                                     key={`${id}-${item.value}`}
-                                    className={clsx('border-input relative flex flex-col items-center gap-3 rounded-full p-2! text-center shadow-xs transition-[color,box-shadow] outline-none has-data-disabled:cursor-not-allowed has-data-disabled:opacity-50',
+                                    className={clsx('border-input relative flex flex-col items-center gap-3 rounded-full p-2! text-center shadow-xs transition-[color,box-shadow] outline-none has-data-disabled:cursor-not-allowed has-data-disabled:opacity-50 has-data-[timeout="true"]:w-fit! has-data-[timeout="true"]:text-wrap has-data-[timeout="true"]:h-fit!',
                                         store.selectedSidebarTab !== id && 'bg-inherit/85 hover:bg-gray-700/20 text-white/75',
                                         store.selectedSidebarTab === id && 'border-2 bg-gray-800 text-white/75 hover:bg-gray-800/50 hover:border-gray-100/50',
-
                                     )}
                                     onClick={(ev) => {
                                         store.setSidebarTab(id);
@@ -60,7 +59,7 @@ const Page = () => {
                                             aria-label={item.label ?? ''}
                                             disabled={item.disabled ?? false}
                                         /> */}
-                                    <LazyIcon name={item.icon} className="size-4.5" />
+                                    <LazyIcon name={item?.icon} className="size-4.5" alt={item?.label}/>
                                 </Button>
                             ))
                         }

@@ -25,7 +25,7 @@ export default function ChatProfileClient() {
                         </Avatar>
                         <div className="flex flex-col justify-center gap-0.5">
                             <h1 className="font-tertiary text-xl font-semibold line-clamp-1">[User's Name]</h1>
-                            <h3 className="font-tertiary text-sm font-bold text-white/50 hover:text-white/75 transition-colors duration-250 ease-linear line-clamp-1">@[User's Username]</h3>
+                            <h3 className="font-tertiary text-sm font-bold text-white/50 hover:text-white/75 transition-colors duration-250 ease-linear line-clamp-1">@[User's Last seen]</h3>
                         </div>
                     </div>
                     <DialogClose asChild>
